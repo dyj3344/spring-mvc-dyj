@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h1>首页</h1>
+
+<div id="app">
+    <a @click="testAxios" th:href="@{/testAxios}">SpringMvc处理ajax</a>
+</div>
+<script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/axios.min.js}"></script>
+<script type="text/javascript">
+    new Vue({
+        el:"#app",
+        methods:{
+            testAxios:function (event) {
+                 axios({
+                     method:"post",
+                     url:event.target.href,
+                     params:{
+                         username:"admin",
+                         password:"123"
+                     }
+                 }).then(function (response){
+                    alert(response.data);
+                 });
+                event.preventDefault();
+
+            }
+        }
+    });
+</script>
+</body>
+</html>
